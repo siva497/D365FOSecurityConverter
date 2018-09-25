@@ -10,8 +10,6 @@ namespace D365FOSecurityConverter
         public Main()
         {
             InitializeComponent();
-            tb_inputFile.Text = @"C:\Users\Meyer\Dropbox\Fastpath\AX Security\UserInterface\SecurityDatabaseCustomizations.xml";
-            tb_outputFolder.Text = @"C:\temp";
         }
 
         private void btnInputFileBrowse_Click(object sender, EventArgs e)
