@@ -45,51 +45,63 @@ namespace D365FOSecurityConverter
             }
             else
             {
-                string rootFolderPath = outputFolderPath + @"\D365FOCustomizedSecurity";
-                string roleFolderPath = rootFolderPath + @"\AxSecurityRole";
-                string dutyFolderPath = rootFolderPath + @"\AxSecurityDuty";
-                string privFolderPath = rootFolderPath + @"\AxSecurityPrivilege";
+                try
+                {
+                    ProcessXMLFile(inputFilePath, outputFolderPath);
+                    MessageBox.Show("Processing of security has completed successfully!", "Security File Processed Successfully", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error Processing Security File", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
 
-                Directory.CreateDirectory(rootFolderPath);
-                Directory.CreateDirectory(roleFolderPath);
-                Directory.CreateDirectory(dutyFolderPath);
-                Directory.CreateDirectory(privFolderPath);
+        private void ProcessXMLFile(string inputFilePath, string outputFolderPath)
+        {
+            string rootFolderPath = outputFolderPath + @"\D365FOCustomizedSecurity";
+            string roleFolderPath = rootFolderPath + @"\AxSecurityRole";
+            string dutyFolderPath = rootFolderPath + @"\AxSecurityDuty";
+            string privFolderPath = rootFolderPath + @"\AxSecurityPrivilege";
 
-                XmlDocument xDoc = new XmlDocument();
-                xDoc.Load(inputFilePath);
-                XmlNodeList roles = xDoc.GetElementsByTagName("AxSecurityRole");
-                foreach(XmlNode role in roles)
+            Directory.CreateDirectory(rootFolderPath);
+            Directory.CreateDirectory(roleFolderPath);
+            Directory.CreateDirectory(dutyFolderPath);
+            Directory.CreateDirectory(privFolderPath);
+
+            XmlDocument xDoc = new XmlDocument();
+            xDoc.Load(inputFilePath);
+            XmlNodeList roles = xDoc.GetElementsByTagName("AxSecurityRole");
+            foreach (XmlNode role in roles)
+            {
+                string roleName = role["Name"]?.InnerText;
+                if (roleName != null)
                 {
-                    string roleName = role["Name"]?.InnerText;
-                    if (roleName != null)
-                    {
-                        string fileName = roleFolderPath + @"\" + roleName + @".xml";
-                        File.WriteAllText(fileName, role.OuterXml);
-                    }
+                    string fileName = roleFolderPath + @"\" + roleName + @".xml";
+                    File.WriteAllText(fileName, role.OuterXml);
                 }
-                XmlNodeList duties = xDoc.GetElementsByTagName("AxSecurityDuty");
-                foreach(XmlNode duty in duties)
+            }
+            XmlNodeList duties = xDoc.GetElementsByTagName("AxSecurityDuty");
+            foreach (XmlNode duty in duties)
+            {
+                string dutyName = duty["Name"]?.InnerText;
+                if (dutyName != null)
                 {
-                    string dutyName = duty["Name"]?.InnerText;
-                    if(dutyName != null)
-                    {
-                        string fileName = dutyFolderPath + @"\" + dutyName + @".xml";
-                        File.WriteAllText(fileName, duty.OuterXml);
-                    }
-                    
+                    string fileName = dutyFolderPath + @"\" + dutyName + @".xml";
+                    File.WriteAllText(fileName, duty.OuterXml);
                 }
-                XmlNodeList privileges = xDoc.GetElementsByTagName("AxSecurityPrivilege");
-                foreach(XmlNode privilege in privileges)
+
+            }
+            XmlNodeList privileges = xDoc.GetElementsByTagName("AxSecurityPrivilege");
+            foreach (XmlNode privilege in privileges)
+            {
+                string privilegeName = privilege["Name"]?.InnerText;
+                if (privilegeName != null)
                 {
-                    string privilegeName = privilege["Name"]?.InnerText;
-                    if(privilegeName != null)
-                    {
-                        string fileName = privFolderPath + @"\" + privilegeName + @".xml";
-                        File.WriteAllText(fileName, privilege.OuterXml);
-                    }
-                    
+                    string fileName = privFolderPath + @"\" + privilegeName + @".xml";
+                    File.WriteAllText(fileName, privilege.OuterXml);
                 }
-                MessageBox.Show("Processing of security has completed successfully!", "Security Processed Successfully", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             }
         }
     }
