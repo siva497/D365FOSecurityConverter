@@ -11,3 +11,6 @@ Will create a folder with the following structure:
     - SecurityRoles
 	- SecurityDuties
 	- SecurityPrivileges
+
+## License
+<a href="http://opensource.org/licenses/MIT">MIT-licensed</a>.
