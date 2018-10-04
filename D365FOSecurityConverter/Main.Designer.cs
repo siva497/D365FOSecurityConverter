@@ -34,9 +34,12 @@
             this.btn_inputFileBrowse = new System.Windows.Forms.Button();
             this.tb_outputFolder = new System.Windows.Forms.TextBox();
             this.btn_outputFolderBrowse = new System.Windows.Forms.Button();
-            this.btn_process = new System.Windows.Forms.Button();
+            this.btn_Export = new System.Windows.Forms.Button();
             this.inputFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.outputFolderDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.dgvSecurityLayers = new System.Windows.Forms.DataGridView();
+            this.btn_Process = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSecurityLayers)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -63,6 +66,7 @@
             this.tb_inputFile.Name = "tb_inputFile";
             this.tb_inputFile.Size = new System.Drawing.Size(547, 20);
             this.tb_inputFile.TabIndex = 2;
+            this.tb_inputFile.TextChanged += new System.EventHandler(this.tbInputFile_TextChanged);
             // 
             // btn_inputFileBrowse
             // 
@@ -80,6 +84,7 @@
             this.tb_outputFolder.Name = "tb_outputFolder";
             this.tb_outputFolder.Size = new System.Drawing.Size(547, 20);
             this.tb_outputFolder.TabIndex = 4;
+            this.tb_outputFolder.TextChanged += new System.EventHandler(this.tbOutputFolder_TextChanged);
             // 
             // btn_outputFolderBrowse
             // 
@@ -91,26 +96,52 @@
             this.btn_outputFolderBrowse.UseVisualStyleBackColor = true;
             this.btn_outputFolderBrowse.Click += new System.EventHandler(this.btnOutputFolderBrowse_Click);
             // 
-            // btn_process
+            // btn_Export
             // 
-            this.btn_process.Location = new System.Drawing.Point(578, 114);
-            this.btn_process.Name = "btn_process";
-            this.btn_process.Size = new System.Drawing.Size(75, 23);
-            this.btn_process.TabIndex = 6;
-            this.btn_process.Text = "Process";
-            this.btn_process.UseVisualStyleBackColor = true;
-            this.btn_process.Click += new System.EventHandler(this.btnProcess_Click);
+            this.btn_Export.Enabled = false;
+            this.btn_Export.Location = new System.Drawing.Point(578, 362);
+            this.btn_Export.Name = "btn_Export";
+            this.btn_Export.Size = new System.Drawing.Size(75, 23);
+            this.btn_Export.TabIndex = 6;
+            this.btn_Export.Text = "Export";
+            this.btn_Export.UseVisualStyleBackColor = true;
+            this.btn_Export.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // inputFileDialog
             // 
             this.inputFileDialog.FileName = "openFileDialog1";
             // 
+            // dgvSecurityLayers
+            // 
+            this.dgvSecurityLayers.AllowUserToAddRows = false;
+            this.dgvSecurityLayers.AllowUserToDeleteRows = false;
+            this.dgvSecurityLayers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSecurityLayers.Location = new System.Drawing.Point(12, 159);
+            this.dgvSecurityLayers.MultiSelect = false;
+            this.dgvSecurityLayers.Name = "dgvSecurityLayers";
+            this.dgvSecurityLayers.RowHeadersVisible = false;
+            this.dgvSecurityLayers.Size = new System.Drawing.Size(641, 197);
+            this.dgvSecurityLayers.TabIndex = 7;
+            // 
+            // btn_Process
+            // 
+            this.btn_Process.Enabled = false;
+            this.btn_Process.Location = new System.Drawing.Point(578, 130);
+            this.btn_Process.Name = "btn_Process";
+            this.btn_Process.Size = new System.Drawing.Size(75, 23);
+            this.btn_Process.TabIndex = 8;
+            this.btn_Process.Text = "Process";
+            this.btn_Process.UseVisualStyleBackColor = true;
+            this.btn_Process.Click += new System.EventHandler(this.btnProcess_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(665, 149);
-            this.Controls.Add(this.btn_process);
+            this.ClientSize = new System.Drawing.Size(665, 397);
+            this.Controls.Add(this.btn_Process);
+            this.Controls.Add(this.dgvSecurityLayers);
+            this.Controls.Add(this.btn_Export);
             this.Controls.Add(this.btn_outputFolderBrowse);
             this.Controls.Add(this.tb_outputFolder);
             this.Controls.Add(this.btn_inputFileBrowse);
@@ -119,6 +150,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Main";
             this.Text = "D365FO Security Converter";
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSecurityLayers)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -132,9 +164,11 @@
         private System.Windows.Forms.Button btn_inputFileBrowse;
         private System.Windows.Forms.TextBox tb_outputFolder;
         private System.Windows.Forms.Button btn_outputFolderBrowse;
-        private System.Windows.Forms.Button btn_process;
+        private System.Windows.Forms.Button btn_Export;
         private System.Windows.Forms.OpenFileDialog inputFileDialog;
         private System.Windows.Forms.FolderBrowserDialog outputFolderDialog;
+        private System.Windows.Forms.DataGridView dgvSecurityLayers;
+        private System.Windows.Forms.Button btn_Process;
     }
 }
 

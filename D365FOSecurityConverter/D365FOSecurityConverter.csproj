@@ -52,11 +52,7 @@
     <Compile Include="Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\AxSecurityPrivilegeReference.cs" />
-    <Compile Include="Models\AxSecurityRole.cs" />
-    <Compile Include="Models\AxSecurityDataEntityReference.cs" />
-    <Compile Include="Models\AxSecurityDutyReference.cs" />
-    <Compile Include="Models\Enums.cs" />
+    <Compile Include="Models\SecurityLayer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Main.resx">
